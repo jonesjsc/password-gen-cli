@@ -1,4 +1,7 @@
 const program = require('commander');
+const chalk = require('chalk');
+const log = console.log;
+const createPassword = require('./utils/createPassword');
 
 program.version('1.0.0').description('Simple Password Generator');
 
@@ -10,4 +13,9 @@ program
   .parse();
 
 const { length, save, numbers, symbols } = program.opts();
-console.log(numbers, symbols);
+
+// Get generated password
+const generatedPassword = createPassword(length, numbers, symbols);
+
+// Output generated password
+log(chalk.blue('Generated Password: ') + chalk.bold(generatedPassword));
